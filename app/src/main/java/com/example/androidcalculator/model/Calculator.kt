@@ -1,4 +1,4 @@
-package com.example.androidcalculator.model.calculate_data
+package com.example.androidcalculator.model
 
 import kotlin.math.sign
 

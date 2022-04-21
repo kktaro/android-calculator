@@ -1,5 +1,6 @@
 package com.example.androidcalculator.model.calculate_data
 
+import com.example.androidcalculator.model.Calculator
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
