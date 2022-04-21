@@ -135,5 +135,10 @@ class CalculatorTest {
 
         calculator.sub(5000000000000000000)
         assertEquals(calculator.calculateData.value, -999999999999999999)
+
+        calculator.clear()
+        calculator.add(3210000)
+        calculator.multiple(10000000000000)
+        assertEquals(calculator.calculateData.value, 999999999999999999)
     }
 }

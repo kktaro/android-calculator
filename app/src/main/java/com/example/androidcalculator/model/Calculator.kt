@@ -27,7 +27,11 @@ object Calculator {
 
     fun multiple(value: Long) {
         val result = calculateData.value * value
-        calculateData = CalculateData(getCalculateValue(result))
+        calculateData = if (isMultipleOverflow(value, result)) {
+            CalculateData(getLimit(calculateData.value.sign * value.sign))
+        } else {
+            CalculateData(getCalculateValue(result))
+        }
     }
 
     fun divide(value: Long) {
@@ -43,9 +47,20 @@ object Calculator {
     private fun isWithinRange(value: Long): Boolean =
         -999999999999999999 < value && value < 999999999999999999
 
+    private fun getLimit(value: Int): Long = getLimit(value.toLong())
+
     private fun getLimit(value: Long): Long =
         if(value.sign < 0) -999999999999999999 else 999999999999999999
 
     private fun getCalculateValue(value: Long): Long =
         if(isWithinRange(value)) value else getLimit(value)
+
+    private fun isMultipleOverflow(input: Long, result: Long): Boolean {
+        if (calculateData.value == 0L || input == 0L) return false
+
+        val baseSign = calculateData.value.sign
+        val inputSign = input.sign
+        val resultSign = result.sign
+        return baseSign * inputSign != resultSign
+    }
 }
